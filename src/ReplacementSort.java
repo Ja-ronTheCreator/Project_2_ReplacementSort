@@ -69,29 +69,30 @@ public class ReplacementSort {
            // Heapy.sort(Array_Z);
            ArrayList<Integer> list = new ArrayList<Integer>();
 
-           int RunNum = 1;
-           while (Heapy.HeapSize() != 0) {
-               String TempFile = "TempFile" + RunNum + ".txt";
-               FileWriter fw = new FileWriter(TempFile);
-               PrintWriter pw = new PrintWriter(fw);
-               TEMP = Heapy.remove();
-               System.out.println(TEMP);
-               pw.println(TEMP);
-               pw.close();
-               int NextElement = Integer.parseInt(Buffy.readLine());
-               if (NextElement > TEMP) {
-                   Heapy.insert(NextElement);
-                   }
-               else {
+           while(Buffy.readLine() != null) {
+               int RunNum = 1;
+               while (Heapy.HeapSize() != 0 && Buffy.readLine() != null) {
+                   String TempFile = "TempFile" + RunNum + ".txt";
+                   //System.out.Println()
+                   FileWriter fw = new FileWriter(TempFile,true);
+                   PrintWriter pw = new PrintWriter(fw);
+                   TEMP = Heapy.remove();
+                   System.out.println("Run " + RunNum + " #: " + TEMP);
+                   pw.println(TEMP);
+                   pw.close();
+                   int NextElement = Integer.parseInt(Buffy.readLine());
+                   if (NextElement > TEMP) {
+                       Heapy.insert(NextElement);
+                   } else {
                        list.add(NextElement);
                    }
 
+               }
+               Heapy.HeapIt(list);
+               list.clear();
+
+               RunNum++;
            }
-           Heapy.HeapIt(list);
-           list.clear();
-
-           RunNum++;
-
 
        }
        catch (IOException e)
