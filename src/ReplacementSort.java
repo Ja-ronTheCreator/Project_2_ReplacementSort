@@ -27,8 +27,8 @@ public class ReplacementSort {
             int i = 0;
             while (i < x) {
 
-                int pp = ran.nextInt(99);
-                System.out.println("added " + pp );
+                int pp = ran.nextInt(98)+1;
+                //System.out.println("added " + pp );
                 pw.println(pp);
                 i++;
             }
@@ -55,7 +55,7 @@ public class ReplacementSort {
 
            int MSIZE = 11; //size of the HEAP/Memory flow
 
-           MinHeap Heapy = new MinHeap(MSIZE);
+           BinaryHeap Heapy = new BinaryHeap(MSIZE);
            int i = 1;
            int[] Array_Z = new int[8192];
            while (i <= MSIZE ) {
@@ -68,29 +68,34 @@ public class ReplacementSort {
            int TEMP = 0;
            // Heapy.sort(Array_Z);
            ArrayList<Integer> list = new ArrayList<Integer>();
-
+           int RunNum = 1;
            while(Buffy.readLine() != null) {
-               int RunNum = 1;
+
                while (Heapy.HeapSize() != 0 && Buffy.readLine() != null) {
                    String TempFile = "TempFile" + RunNum + ".txt";
                    //System.out.Println()
                    FileWriter fw = new FileWriter(TempFile,true);
                    PrintWriter pw = new PrintWriter(fw);
-                   TEMP = Heapy.remove();
+                   TEMP = Heapy.remove(0);
                    System.out.println("Run " + RunNum + " #: " + TEMP);
                    pw.println(TEMP);
                    pw.close();
-                   int NextElement = Integer.parseInt(Buffy.readLine());
-                   if (NextElement > TEMP) {
-                       Heapy.insert(NextElement);
-                   } else {
-                       list.add(NextElement);
-                   }
 
+                   if (Buffy.readLine()== null)
+                   {System.out.println(" NULL VALUE WHAT THE");}
+
+                   else {
+                       int NextElement = Integer.parseInt(Buffy.readLine());
+                       if (NextElement > TEMP) {
+                           Heapy.insert(NextElement);
+                       } else {
+                           list.add(NextElement);
+                       }
+                   }
                }
+               System.out.println("Out of WHile");
                Heapy.HeapIt(list);
                list.clear();
-
                RunNum++;
            }
 
@@ -102,8 +107,9 @@ public class ReplacementSort {
 
     public static void main(String args[])
     {
+
         System.out.println("instantiate heapy");
-        FileOut(30);
+        FileOut(1000);
         Replacement("Test.txt");
 
 
