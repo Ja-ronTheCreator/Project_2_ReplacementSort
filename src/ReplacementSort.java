@@ -81,17 +81,22 @@ public class ReplacementSort {
                    pw.println(TEMP);
                    pw.close();
 
-                   if (Buffy.readLine()== null)
-                   {System.out.println(" NULL VALUE WHAT THE");}
+                   /*if (Buffy.readLine()== null)
+                   {System.out.println(" NULL VALUE WHAT THE");}*/
+                   int NextElementy = Buffy.readLine();
 
-                   else {
+                   while(NextElementy != null) {
+
                        int NextElement = Integer.parseInt(Buffy.readLine());
-                       if (NextElement > TEMP) {
-                           Heapy.insert(NextElement);
-                       } else {
-                           list.add(NextElement);
+                           if (NextElement > TEMP) {
+                               Heapy.insert(NextElement);
+                           } else {
+                               list.add(NextElement);
+                           }
                        }
-                   }
+                   /*else
+                   {System.out.println("Found error");}*/
+                    //catch (IOException e){System.out.println("caught an null");}
                }
                System.out.println("Out of WHile");
                Heapy.HeapIt(list);
@@ -109,7 +114,7 @@ public class ReplacementSort {
     {
 
         System.out.println("instantiate heapy");
-        FileOut(1000);
+        FileOut(100);
         Replacement("Test.txt");
 
 
