@@ -131,6 +131,11 @@ public class Heap {
 
         return (i - 1) / 2;
     }
+    public /*ArrayList<Integer>*/ void  printMe()
+    {
+        System.out.println("Heap: " + list);
+        //return list;
+    }
 
     private void swap(int i, int parent) {
 

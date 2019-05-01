@@ -60,24 +60,26 @@ public class ReplacementSort {
            Heapy.MinHeap();
            int i = 1;
            int[] Array_Z = new int[8192];
-           while (i <= MSIZE ) {
+           while (i <= 5 ) {
                int ins = Integer.parseInt(Buffy.readLine());
                System.out.println("inserting "+ ins);
                Heapy.insert(ins);
                System.out.println("Worked inserting "+ ins);
                i++;
+               System.out.println(i);
 
                //Array_Z[i] = Integer.parseInt(Buffy.readLine());
            }
            int[] out_array;
            int TEMP = 0;
            // Heapy.sort(Array_Z);
-           ArrayList<Integer> list = new ArrayList<Integer>();
+           ArrayList<Integer> listNON = new ArrayList<Integer>();
            int RunNum = 1;
-           while(Scany.hasNextLine() == true) {
+           while(Buffy.readLine() != null ) {
 
+              Heapy.printMe();
                System.out.println("Start of WHile");
-               if (Heapy.isEmpty()== false)
+               if (Heapy.isEmpty()== true)
                {System.out.println("flippin empty");}
                while (Heapy.isEmpty()== false) {
                    System.out.println("Start of SECOND WHile");
@@ -93,29 +95,114 @@ public class ReplacementSort {
                    /*if (Buffy.readLine()== null)
                    {System.out.println(" NULL VALUE WHAT THE");}*/
                    String NextElementy = Buffy.readLine();
-                    //if(Scany.hasNextLine() == true) {
-                        int NextElement = Integer.parseInt(Buffy.readLine());
+                    if(NextElementy != null) {
+                        int NextElement = Integer.parseInt(NextElementy);
                         if (NextElement > TEMP) {
                             System.out.println("Insert into HEAP");
                             Heapy.insert(NextElement);
                         } else {
                             System.out.println("Insert into LIST");
-                            list.add(NextElement);
+                            listNON.add(NextElement);
                         }
-                   // }
-                   /*else
-                   {System.out.println("Found error");}*/
+                    }
+                   else
+                   {System.out.println("Found error");}
                     //catch (IOException e){System.out.println("caught an null");}
                }
                System.out.println("Out of WHile");
-               Heapy.MinHeap(list);
-               list.clear();
+               System.out.println("list: " + listNON);
+               ArrayList<Integer> TEMPLIST = new ArrayList<>();
+                while(listNON.isEmpty()==false)
+                {TEMPLIST.add(listNON.get(0));
+                listNON.remove(0) ;
+                }
+               Heapy.MinHeap(TEMPLIST);
+               Heapy.printMe();
+                listNON.clear();
                RunNum++;
+               Heapy.printMe();
            }
 
        }
        catch (IOException e)
        {System.out.println("File Not found?");}
+    }
+
+    public static void MultVerseTest(String FileName)
+    {
+
+        int MergeNum = 1;
+        int i = 1;
+        int j = 2;
+        File FileMeI = new File("E:\\230\\Project_2_ReplacementSort\\"+FileName+i+".txt");
+        File FileMeJ = new File("E:\\230\\Project_2_ReplacementSort\\"+FileName+j+".txt");
+        while(FileMeI.exists()&& FileMeJ.exists()) {
+            try {
+                FileReader FileRep = new FileReader(FileName + i);
+
+                BufferedReader Buffys = new BufferedReader(FileRep);
+
+                FileReader FilePer = new FileReader(FileName + j);
+                BufferedReader Buffyz = new BufferedReader(FilePer);
+
+
+                int File1 = Integer.parseInt(Buffys.readLine());
+                int File2 = Integer.parseInt(Buffyz.readLine());
+
+                FileWriter WriteIt = new FileWriter(FileName + 0);
+                PrintWriter pw = new PrintWriter(WriteIt);
+
+                String IfNull1 = Buffys.readLine();
+                String IfNull2 = Buffyz.readLine();
+                if (IfNull1 != null && IfNull2 != null) {
+                    if (File1 < File2)
+                        pw.println(File1);
+                    if (IfNull1 != null) {
+                        File1 = Integer.parseInt(IfNull1);
+                    } else if (File1 > File2)
+                        pw.println(File2);
+                    if (IfNull1 != null) {
+                        File2 = Integer.parseInt(IfNull2);
+                    }
+                } else if (IfNull1 != null && IfNull2 == null) {
+                    String IfNull1_2 = Buffys.readLine();
+                    while (IfNull1_2 != null) {
+                        pw.println(IfNull1_2);
+                    }
+                } else if (IfNull1 == null && IfNull2 != null) {
+                    String IfNull2_2 = Buffyz.readLine();
+                    while (IfNull2_2 != null) {
+                        pw.println(IfNull2_2);
+                    }
+                }
+
+                if (FileMeI.exists() == false && FileMeJ.exists() == true) {
+                    FileReader FileRep4 = new FileReader(FileName + j);
+                    BufferedReader Buffys4 = new BufferedReader(FileRep4);
+
+                    FileWriter WriteIt4 = new FileWriter(FileName + j);
+                    PrintWriter pw4 = new PrintWriter(WriteIt4);
+
+                    String IfNull4 = Buffys4.readLine();
+                    while (IfNull4 != null) {
+                        pw4.println(Integer.parseInt(IfNull4));
+                    }
+                }
+
+                if (FileMeI.exists() == true && FileMeJ.exists() == false) {
+                    FileReader FileRep5 = new FileReader(FileName + i);
+                    BufferedReader Buffys5 = new BufferedReader(FileRep5);
+                    FileWriter WriteIt5 = new FileWriter(FileName + i);
+                    PrintWriter pw5 = new PrintWriter(WriteIt5);
+
+                    String IfNull5 = Buffys5.readLine();
+                    while (IfNull5 != null) {
+                        pw5.println(Integer.parseInt(IfNull5));
+                    }
+                }
+            }
+            catch(IOException e){System.out.println("file not found");}
+        }
     }
 
 
@@ -125,7 +212,7 @@ public class ReplacementSort {
         System.out.println("instantiate heapy");
         FileOut(100);
         Replacement("Test.txt");
-
+        System.out.println("instantiate heapy DONE");
 
 
     }
