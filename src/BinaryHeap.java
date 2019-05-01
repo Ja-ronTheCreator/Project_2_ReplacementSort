@@ -72,9 +72,20 @@ public class BinaryHeap {
             throw new NoSuchElementException("Heap is empty, No element to delete");
         int key = heap[x];
         heap[x] = heap[heapSize -1];
+        heap = ARR_REM(heap);
         heapSize--;
         heapifyDown(x);
         return key;
+    }
+
+    public int[] ARR_REM (int[] arrysy)
+    {
+        int[] TempARR = new int[heapSize-1];
+        for(int xs = 0; xs<heapSize-1;xs++)
+        {
+            TempARR[xs] = arrysy [xs];
+        }
+        return TempARR;
     }
 
     /**

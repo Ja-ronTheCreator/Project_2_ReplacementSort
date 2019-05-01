@@ -55,7 +55,8 @@ public class ReplacementSort {
 
            int MSIZE = 11; //size of the HEAP/Memory flow
 
-           BinaryHeap Heapy = new BinaryHeap(MSIZE);
+           Heap Heapy = new Heap();
+           Heapy.MinHeap();
            int i = 1;
            int[] Array_Z = new int[8192];
            while (i <= MSIZE ) {
@@ -71,19 +72,19 @@ public class ReplacementSort {
            int RunNum = 1;
            while(Buffy.readLine() != null) {
 
-               while (Heapy.HeapSize() != 0 && Buffy.readLine() != null) {
+               while (Heapy.isEmpty()== false && Buffy.readLine() != null) {
                    String TempFile = "TempFile" + RunNum + ".txt";
                    //System.out.Println()
                    FileWriter fw = new FileWriter(TempFile,true);
                    PrintWriter pw = new PrintWriter(fw);
-                   TEMP = Heapy.remove(0);
+                   TEMP = Heapy.extractMin();
                    System.out.println("Run " + RunNum + " #: " + TEMP);
                    pw.println(TEMP);
                    pw.close();
 
                    /*if (Buffy.readLine()== null)
                    {System.out.println(" NULL VALUE WHAT THE");}*/
-                   int NextElementy = Buffy.readLine();
+                   String NextElementy = Buffy.readLine();
 
                    while(NextElementy != null) {
 
@@ -99,7 +100,7 @@ public class ReplacementSort {
                     //catch (IOException e){System.out.println("caught an null");}
                }
                System.out.println("Out of WHile");
-               Heapy.HeapIt(list);
+               Heapy.MinHeap(list);
                list.clear();
                RunNum++;
            }
