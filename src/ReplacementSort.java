@@ -128,12 +128,13 @@ public class ReplacementSort {
        {System.out.println("File Not found?");}
     }
 
-    public static void MultVerseTest(String FileName)
+    public static void MultVerseTest(String FileName,int NUMBER)
     {
         try {
-            int MergeNum = 1;
-            int i = 1;
-            int j = 2;
+            //int MergeNum = 1;
+            int i = NUMBER + 1;
+            int j = NUMBER + 2;
+            int OUTFILES = NUMBER;
             File FileMeI = new File("E:\\230\\Project_2_ReplacementSort\\" + FileName + i + ".txt");
             File FileMeJ = new File("E:\\230\\Project_2_ReplacementSort\\" + FileName + j + ".txt");
             while (FileMeI.exists() && FileMeJ.exists()) {
@@ -146,11 +147,11 @@ public class ReplacementSort {
                 BufferedReader Buffyz = new BufferedReader(FilePer);
 
 
-                int OUTFILES = 1;
+
                 int File1 = Integer.parseInt(Buffys.readLine());
                 int File2 = Integer.parseInt(Buffyz.readLine());
 
-                FileWriter WriteIt = new FileWriter(FileName + 0);
+                FileWriter WriteIt = new FileWriter(FileName + OUTFILES);
                 PrintWriter pw = new PrintWriter(WriteIt);
 
                 String IfNull1 = Buffys.readLine();
@@ -176,6 +177,7 @@ public class ReplacementSort {
                         pw.println(IfNull2_2);
                     }
                 }
+                OUTFILES++;
             }
 
 
@@ -183,7 +185,7 @@ public class ReplacementSort {
                 FileReader FileRep4 = new FileReader(FileName + j);
                 BufferedReader Buffys4 = new BufferedReader(FileRep4);
 
-                FileWriter WriteIt4 = new FileWriter(FileName + j);
+                FileWriter WriteIt4 = new FileWriter(FileName + OUTFILES);
                 PrintWriter pw4 = new PrintWriter(WriteIt4);
 
                 String IfNull4 = Buffys4.readLine();
@@ -192,10 +194,10 @@ public class ReplacementSort {
                 }
             }
 
-            if (FileMeI.exists() == true && FileMeJ.exists() == false) {
+            if (FileMeI.exists() == true && FileMeJ.exists() == false && OUTFILES != NUMBER ) {
                 FileReader FileRep5 = new FileReader(FileName + i);
                 BufferedReader Buffys5 = new BufferedReader(FileRep5);
-                FileWriter WriteIt5 = new FileWriter(FileName + i);
+                FileWriter WriteIt5 = new FileWriter(FileName + OUTFILES);
                 PrintWriter pw5 = new PrintWriter(WriteIt5);
 
                 String IfNull5 = Buffys5.readLine();
@@ -205,6 +207,8 @@ public class ReplacementSort {
             }
         }
             catch(IOException e){System.out.println("file not found");}
+        int FINALNUM = NUMBER - 1;
+        MultVerseTest(FileName,FINALNUM);
     }
 
 
@@ -216,6 +220,7 @@ public class ReplacementSort {
         FileOut(100);
         Replacement("Test.txt");
         System.out.println("instantiate heapy DONE");
+        MultVerseTest("TempFile",0);
 
 
     }

@@ -3,7 +3,7 @@ public class TestBreak {
     {
         for(int i=0;i<1;i++)
         {
-            System.out.println("test" + 0 );
+            System.out.println("test" + -1 );
         }
     }
 }
