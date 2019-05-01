@@ -51,16 +51,20 @@ public class ReplacementSort {
            FileReader FileReadMe = new FileReader(FileName);
            BufferedReader Buffy = new BufferedReader(FileReadMe);
 
+          Scanner Scany = new Scanner(System.in);
            //Writer Objects
 
-           int MSIZE = 11; //size of the HEAP/Memory flow
+           int MSIZE = 10; //size of the HEAP/Memory flow
 
            Heap Heapy = new Heap();
            Heapy.MinHeap();
            int i = 1;
            int[] Array_Z = new int[8192];
            while (i <= MSIZE ) {
-               Heapy.insert(Integer.parseInt(Buffy.readLine()));
+               int ins = Integer.parseInt(Buffy.readLine());
+               System.out.println("inserting "+ ins);
+               Heapy.insert(ins);
+               System.out.println("Worked inserting "+ ins);
                i++;
 
                //Array_Z[i] = Integer.parseInt(Buffy.readLine());
@@ -70,9 +74,13 @@ public class ReplacementSort {
            // Heapy.sort(Array_Z);
            ArrayList<Integer> list = new ArrayList<Integer>();
            int RunNum = 1;
-           while(Buffy.readLine() != null) {
+           while(Scany.hasNextLine() == true) {
 
-               while (Heapy.isEmpty()== false && Buffy.readLine() != null) {
+               System.out.println("Start of WHile");
+               if (Heapy.isEmpty()== false)
+               {System.out.println("flippin empty");}
+               while (Heapy.isEmpty()== false) {
+                   System.out.println("Start of SECOND WHile");
                    String TempFile = "TempFile" + RunNum + ".txt";
                    //System.out.Println()
                    FileWriter fw = new FileWriter(TempFile,true);
@@ -85,16 +93,16 @@ public class ReplacementSort {
                    /*if (Buffy.readLine()== null)
                    {System.out.println(" NULL VALUE WHAT THE");}*/
                    String NextElementy = Buffy.readLine();
-
-                   while(NextElementy != null) {
-
-                       int NextElement = Integer.parseInt(Buffy.readLine());
-                           if (NextElement > TEMP) {
-                               Heapy.insert(NextElement);
-                           } else {
-                               list.add(NextElement);
-                           }
-                       }
+                    //if(Scany.hasNextLine() == true) {
+                        int NextElement = Integer.parseInt(Buffy.readLine());
+                        if (NextElement > TEMP) {
+                            System.out.println("Insert into HEAP");
+                            Heapy.insert(NextElement);
+                        } else {
+                            System.out.println("Insert into LIST");
+                            list.add(NextElement);
+                        }
+                   // }
                    /*else
                    {System.out.println("Found error");}*/
                     //catch (IOException e){System.out.println("caught an null");}
