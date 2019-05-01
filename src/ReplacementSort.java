@@ -130,14 +130,14 @@ public class ReplacementSort {
 
     public static void MultVerseTest(String FileName)
     {
+        try {
+            int MergeNum = 1;
+            int i = 1;
+            int j = 2;
+            File FileMeI = new File("E:\\230\\Project_2_ReplacementSort\\" + FileName + i + ".txt");
+            File FileMeJ = new File("E:\\230\\Project_2_ReplacementSort\\" + FileName + j + ".txt");
+            while (FileMeI.exists() && FileMeJ.exists()) {
 
-        int MergeNum = 1;
-        int i = 1;
-        int j = 2;
-        File FileMeI = new File("E:\\230\\Project_2_ReplacementSort\\"+FileName+i+".txt");
-        File FileMeJ = new File("E:\\230\\Project_2_ReplacementSort\\"+FileName+j+".txt");
-        while(FileMeI.exists()&& FileMeJ.exists()) {
-            try {
                 FileReader FileRep = new FileReader(FileName + i);
 
                 BufferedReader Buffys = new BufferedReader(FileRep);
@@ -146,6 +146,7 @@ public class ReplacementSort {
                 BufferedReader Buffyz = new BufferedReader(FilePer);
 
 
+                int OUTFILES = 1;
                 int File1 = Integer.parseInt(Buffys.readLine());
                 int File2 = Integer.parseInt(Buffyz.readLine());
 
@@ -175,35 +176,37 @@ public class ReplacementSort {
                         pw.println(IfNull2_2);
                     }
                 }
+            }
 
-                if (FileMeI.exists() == false && FileMeJ.exists() == true) {
-                    FileReader FileRep4 = new FileReader(FileName + j);
-                    BufferedReader Buffys4 = new BufferedReader(FileRep4);
 
-                    FileWriter WriteIt4 = new FileWriter(FileName + j);
-                    PrintWriter pw4 = new PrintWriter(WriteIt4);
+            if (FileMeI.exists() == false && FileMeJ.exists() == true) {
+                FileReader FileRep4 = new FileReader(FileName + j);
+                BufferedReader Buffys4 = new BufferedReader(FileRep4);
 
-                    String IfNull4 = Buffys4.readLine();
-                    while (IfNull4 != null) {
-                        pw4.println(Integer.parseInt(IfNull4));
-                    }
-                }
+                FileWriter WriteIt4 = new FileWriter(FileName + j);
+                PrintWriter pw4 = new PrintWriter(WriteIt4);
 
-                if (FileMeI.exists() == true && FileMeJ.exists() == false) {
-                    FileReader FileRep5 = new FileReader(FileName + i);
-                    BufferedReader Buffys5 = new BufferedReader(FileRep5);
-                    FileWriter WriteIt5 = new FileWriter(FileName + i);
-                    PrintWriter pw5 = new PrintWriter(WriteIt5);
-
-                    String IfNull5 = Buffys5.readLine();
-                    while (IfNull5 != null) {
-                        pw5.println(Integer.parseInt(IfNull5));
-                    }
+                String IfNull4 = Buffys4.readLine();
+                while (IfNull4 != null) {
+                    pw4.println(Integer.parseInt(IfNull4));
                 }
             }
-            catch(IOException e){System.out.println("file not found");}
+
+            if (FileMeI.exists() == true && FileMeJ.exists() == false) {
+                FileReader FileRep5 = new FileReader(FileName + i);
+                BufferedReader Buffys5 = new BufferedReader(FileRep5);
+                FileWriter WriteIt5 = new FileWriter(FileName + i);
+                PrintWriter pw5 = new PrintWriter(WriteIt5);
+
+                String IfNull5 = Buffys5.readLine();
+                while (IfNull5 != null) {
+                    pw5.println(Integer.parseInt(IfNull5));
+                }
+            }
         }
+            catch(IOException e){System.out.println("file not found");}
     }
+
 
 
     public static void main(String args[])
